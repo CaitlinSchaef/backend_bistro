@@ -10,6 +10,10 @@ class Customer(models.Model):
     
 class EmployeeDriver(models.Model):
     name = models.CharField(max_length=50, null=True)
+
+
+    def __str__(self):
+        return f'Driver Name: {self.name}'
     
 
 class CustomerReview(models.Model):
@@ -30,6 +34,9 @@ class CustomerReview(models.Model):
 class MenuCategory(models.Model):
     category = models.CharField(max_length=60, null=True)
 
+    def __str__(self):
+        return f'{self.category}'
+
 class MenuItem(models.Model):
     name = models.CharField(max_length=40, null=True)
     price = models.PositiveIntegerField(default=12, null=True)
@@ -47,7 +54,11 @@ class OrderStatus(models.Model):
     
     #not only status of order being prepared, but also paid
     def __str__(self):
-        return f'Order is {self.status} and is {self.paid}'
+        if self.paid == False:
+            return f'Order is {self.status}, for {self.location} and is not paid.'
+        else:
+            return f'Order is {self.status}, for {self.location} and is paid.'
+
     
 
 class Order(models.Model):
@@ -58,6 +69,12 @@ class Order(models.Model):
     delivery_tip = models.PositiveIntegerField(default=5, null=True)
     # your view set can return things that aren't on there! So we will do total price then and tip.
 
+    def __str__(self):
+        if OrderStatus.location == 'Delivery':
+            return f'Customer Name: {self.customer}, Date: {self.date_created}, Status: {self.status}, Driver: {self.driver}, Delivery Tip: ${self.delivery_tip}.'
+        else:
+            return f'Customer Name: {self.customer}, Date: {self.date_created}, Status: {self.status}.'
+
 
 # Okay, so they will have to make their order first, and then basically fill the order with menu items which is annoying but whatever 
 
@@ -67,10 +84,11 @@ class OrderItem(models.Model):
     food_selection_quantity = models.PositiveIntegerField(default=1)
     order_modifications = models.CharField(max_length=400, null=True)
 
+    def __str__(self):
+        if self.order_modifications == True:
+            return f'Order Details: {self.customer_order}, {self.food_selection_quantity} {self.menu_item_on_order}'
+        else:
+            return f'Order Details: {self.customer_order}, {self.food_selection_quantity} {self.menu_item_on_order}, Order Notes: {self.order_modifications}'
 
-    # order_status_options = (
-    #                         ('Awaiting Confirmation', 'Awaiting Confirmation'),
-    #                         ('Preparing Order', 'Preparing Order'),
-    #                         ('Ready For Pickup', 'Ready for Pickup'),
-    #                         ('Order Complete', 'Order Complete')
-    #                         )
+
+
