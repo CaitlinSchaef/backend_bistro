@@ -10,10 +10,39 @@ from .serializers import *
 
 # Create your views here.
 
-# class StudentViewSet(viewsets.ModelViewSet):
-#    #two things going on that are pretty much always there, queryset based on what we want to look at (which you can filter down but we won't here)
-#    #this is all the students
-#    queryset = Student.objects.all()
-#    #and what serializer to use, it will be the student serializer
-#    #this is basically the endpoint, but we need to register it in the url
-#    serializer_class = StudentSerializer
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+class EmployeeDriverViewSet(viewsets.ModelViewSet):
+    queryset = EmployeeDriver.objects.all()
+    serializer_class = EmployeeDriverSerializer
+
+
+class CustomerReviewViewSet(viewsets.ModelViewSet):
+    queryset = CustomerReview.objects.all()
+    serializer_class = CustomerReviewSerializer
+
+class MenuCategoryViewSet(viewsets.ModelViewSet):
+    queryset = MenuCategory.objects.all()
+    serializer_class = MenuCategorySerializer
+
+class MenuItemViewSet(viewsets.ModelViewSet):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+
+
+class OrderStatusViewSet(viewsets.ModelViewSet):
+    queryset = OrderStatus.objects.all()
+    serializer_class = OrderStatusSerializer
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+
