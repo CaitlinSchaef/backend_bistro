@@ -16,7 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
+from django.urls import path, include
 
+
+from backend_bistro_app.views import *
+#giving it the app folder and the views from that
+
+router = routers.DefaultRouter()
+
+router.register(r'customer', CustomerViewSet)
+router.register(r'employeeDriver', EmployeeDriverViewSet)
+router.register(r'customerReview', CustomerReviewViewSet)
+router.register(r'menuCategory', MenuCategoryViewSet)
+router.register(r'menuItem', MenuItemViewSet)
+router.register(r'orderStatus', OrderStatusViewSet)
+router.register(r'order', OrderViewSet)
+router.register(r'orderItem', OrderItemViewSet)
+
+#making a path and then we're making it include all of the paths in the router
 urlpatterns = [
-    path('admin/', admin.site.urls),
+path('', include(router.urls))  
 ]
+
