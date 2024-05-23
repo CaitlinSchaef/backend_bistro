@@ -27,7 +27,7 @@ class CustomerReview(models.Model):
     customer_name = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     stars = models.CharField(choices=number_of_stars, null=True, max_length=5)
     review_body = models.CharField(max_length=1500, null=True)
-
+    # should probably change review body to a TextField but oh well
     def __str__(self):
         return f'Name: {self.customer_name}, Rating: {self.stars} Stars, Review: {self.review_body}'
 
@@ -71,9 +71,9 @@ class Order(models.Model):
 
     def __str__(self):
         if OrderStatus.location == 'Delivery':
-            return f'Customer Name: {self.customer}, Date: {self.date_created}, Status: {self.status}, Driver: {self.driver}, Delivery Tip: ${self.delivery_tip}.'
+            return f'Order ID: {self.id}, Customer Name: {self.customer}, Date: {self.date_created}, Status: {self.status}, Driver: {self.driver}, Delivery Tip: ${self.delivery_tip}.'
         else:
-            return f'Customer Name: {self.customer}, Date: {self.date_created}, Status: {self.status}.'
+            return f'Order ID: {self.id}, Customer Name: {self.customer}, Date: {self.date_created}, Status: {self.status}.'
 
 
 # Okay, so they will have to make their order first, and then basically fill the order with menu items which is annoying but whatever 

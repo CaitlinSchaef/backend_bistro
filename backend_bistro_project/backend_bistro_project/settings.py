@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:8080']
+CORS_ALLOWED_ORIGINS = ['http://localhost:8080', 'http://localhost:8080/']
 
 CORS_ALLOW_METHODS = [
     'GET',

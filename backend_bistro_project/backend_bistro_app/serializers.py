@@ -32,11 +32,13 @@ class MenuCategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'category']
 
 class MenuItemSerializer(serializers.ModelSerializer):
+
+
     class Meta:
         model = MenuItem
         #what model did we attach it to? MenuItem
             #what fields do we want to translate:
-        fields = ['id', 'name', 'price', 'description', 'category']
+        fields = ['id', 'name', 'price', 'description', 'category', 'category']
 
 class OrderStatusSerializer(serializers.ModelSerializer):
     class Meta:
